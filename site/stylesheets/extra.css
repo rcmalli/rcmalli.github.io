@@ -1,0 +1,37 @@
+.image--cover {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: auto;
+	object-fit: cover;
+	/* object-position: center; */
+}
+.profile_parent {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	justify-content: space-between;
+	vertical-align: middle;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+.profile_title {
+	font-size: large;
+	padding-top: 15px;
+	text-align: center;
+	margin: auto;
+}
+
+/* .profile_child {
+	width: 175px;
+	margin: auto;
+} */
+.profile_list_item {
+	margin-top: 0.3em;
+	display: flex;
+	align-items: center;
+}
+
+.profile_icon {
+	padding-top: 0.72em;
+}
