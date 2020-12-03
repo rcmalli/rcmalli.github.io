@@ -12,12 +12,12 @@
 	/* justify-content: center; */
 	justify-content: space-between;
 	vertical-align: middle;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 2em;
+	padding-right: 2em;
 }
 .profile_title {
 	font-size: large;
-	padding-top: 15px;
+	padding-top: 1em;
 	text-align: center;
 	margin: auto;
 }
