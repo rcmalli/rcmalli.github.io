@@ -1,0 +1,62 @@
+site_name: Refik Can MALLI
+theme:
+    features:
+        - navigation.tabs
+        - navigation.instant
+        - search.suggest
+        - search.highlight
+    name: material
+    palette:
+        - scheme: default
+          primary: blue
+          accent: blue
+          toggle:
+          icon: material/toggle-switch
+          name: Switch to light mode
+        - scheme: slate
+          primary: blue
+          accent: blue
+          toggle:
+          icon: material/toggle-switch-off-outline
+          name: Switch to dark mode
+    custom_dir: overrides
+
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - attr_list
+    - pymdownx.tabbed
+    - admonition
+    - pymdownx.details
+    - pymdownx.emoji:
+          emoji_index: !!python/name:materialx.emoji.twemoji
+          emoji_generator: !!python/name:materialx.emoji.to_svg
+extra:
+    social:
+        - icon: fontawesome/brands/twitter
+          link: https://twitter.com/refikcanmalli
+          name: Twitter
+        - icon: fontawesome/brands/linkedin
+          link: https://www.linkedin.com/in/refik-can-malli/
+          name: Linkedin
+        - icon: fontawesome/brands/github
+          link: https://www.github.com/rcmalli
+          name: GitHub
+    profile:
+        description: Machine Learning Enthiusiat
+        image_link: /assets/images/profile.jpg
+        location: Milan, Italy
+extra_css:
+    - stylesheets/extra.css
+    - https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css
+extra_javascript:
+    - javascripts/extra.js
+plugins:
+    - search
+nav:
+    - CV: /assets/pdfs/refikcanmallicv.pdf
+    - Home: index.md
+    - Art: https://instagram.com/rcmalli
+google_analytics:
+    - UA-71868139-1
+    - auto

@@ -1,0 +1,57 @@
+
+<nav
+  class="md-nav md-nav--primary"
+  aria-label="{{ lang.t('nav.title') }}"
+  data-md-level="0"
+
+>
+
+{% if config.extra.profile %}
+
+<div class="profile_parent">
+    {% set profile = config.extra.profile %}
+    <img src="{{profile.image_link}}" alt="" class="image--cover" />
+    <p class="profile_title"><strong>{{config.site_name}}</strong></p>
+    <!-- <p class="profile_title">{{profile.description}}</p> -->
+    <div class="profile_list_item">
+        <a
+        target="_blank" rel="noopener"
+        title="{{ title | e }}"
+        class="md-footer-social__link profile_icon"
+        >
+        {% include ".icons/fontawesome/solid/map-marker-alt.svg" %}
+      </a>
+      <a class="md-nav__link">{{profile.location}}</a>
+      <span></span>
+    </div>
+    {% if config.extra.social %}
+    {% for social in config.extra.social %}
+      {% set title = social.name %}
+      {% if not title and "//" in social.link %}
+        {% set _,url = social.link.split("//") %}
+        {% set title = url.split("/")[0] %}
+      {% endif %}
+      <div class="profile_list_item">
+      <a
+        target="_blank" rel="noopener"
+        title="{{ title | e }}"
+        class="md-footer-social__link profile_icon"
+      >
+        {% include ".icons/" ~ social.icon ~ ".svg" %}
+      </a>
+      <a  href="{{ social.link }}" class="md-nav__link">{{social.name}}</a>
+     
+    </div>
+    {% endfor %}
+{% endif %}
+
+    
+</div>
+ 
+{% endif %}
+
+
+
+
+
+</nav>
