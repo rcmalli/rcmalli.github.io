@@ -54,9 +54,12 @@ extra_javascript:
 plugins:
     - search
 nav:
-    - CV: /assets/pdfs/refikcanmallicv.pdf
     - Home: index.md
+    - Blog:
+          - blog.md
     - Art: https://instagram.com/rcmalli
+    - CV: https://rcmalli.github.com/assets/pdfs/refikcanmallicv.pdf
 google_analytics:
     - UA-71868139-1
     - auto
+copyright: Copyright &copy; 2020 - 2021 Refik Can MALLI
