@@ -42,6 +42,9 @@ extra:
         - icon: fontawesome/brands/github
           link: https://www.github.com/rcmalli
           name: GitHub
+        - icon: fontawesome/brands/google
+          link: https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en
+          name: Google Scholar
     profile:
         description: Machine Learning Enthiusiat
         image_link: /assets/images/profile.jpg
