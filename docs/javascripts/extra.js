@@ -10,6 +10,7 @@ var light_button = buttons[0];
 var dark_button = buttons[1];
 light_button.addEventListener("click", function () {
 	var attr = this.getAttribute("data-md-color-scheme");
+	localStorage.setItem("theme", attr);
 	document.body.setAttribute("data-md-color-scheme", attr);
 	// var name = document.querySelector("#__code_0 code span:nth-child(7)");
 	// name.textContent = attr;
@@ -19,6 +20,7 @@ light_button.addEventListener("click", function () {
 dark_button.addEventListener("click", function () {
 	var attr = this.getAttribute("data-md-color-scheme");
 	document.body.setAttribute("data-md-color-scheme", attr);
+	localStorage.setItem("theme", attr);
 	// var name = document.querySelector("#__code_0 code span:nth-child(7)");
 	// name.textContent = attr;
 	this.style.display = "none";

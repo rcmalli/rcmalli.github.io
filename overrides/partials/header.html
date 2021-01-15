@@ -29,6 +29,8 @@
 <!-- Application header -->
 <header class="md-header" data-md-component="header">
 
+  
+
   <!-- Top-level navigation -->
   <nav class="md-header-nav md-grid" aria-label="{{ lang.t('header.title') }}">
 
@@ -95,4 +97,10 @@
       </div>
     {% endif %}
   </nav>
+  <script>
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme != null) {
+        document.body.setAttribute("data-md-color-scheme", currentTheme);
+    }
+  </script>
 </header>
