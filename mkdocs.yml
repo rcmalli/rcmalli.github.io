@@ -6,34 +6,67 @@ theme:
         - search.suggest
         - search.highlight
     name: material
+
     palette:
-        - scheme: default
-          primary: blue
-          accent: blue
-          toggle:
-          icon: material/toggle-switch
-          name: Switch to light mode
-        - scheme: slate
-          primary: blue
-          accent: blue
-          toggle:
-          icon: material/toggle-switch-off-outline
+      - media: "(prefers-color-scheme: light)"
+        scheme: default
+        primary: blue
+        accent: blue
+        toggle:
+          icon: material/weather-night
           name: Switch to dark mode
+      - media: "(prefers-color-scheme: dark)"
+        scheme: slate
+        primary: blue
+        accent: blue
+        toggle:
+          icon: material/weather-sunny
+          name: Switch to light mode
     custom_dir: overrides
     icon:
         logo: fontawesome/solid/robot
 
 markdown_extensions:
-    - pymdownx.highlight
-    - pymdownx.superfences
-    - attr_list
-    - pymdownx.tabbed
-    - admonition
-    - pymdownx.details
-    - pymdownx.emoji:
-          emoji_index: !!python/name:materialx.emoji.twemoji
-          emoji_generator: !!python/name:materialx.emoji.to_svg
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
 extra:
+    analytics:
+      provider: google
+      property: UA-71868139-1
     social:
         - icon: fontawesome/brands/twitter
           link: https://twitter.com/refikcanmalli
@@ -48,7 +81,7 @@ extra:
           link: https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en
           name: Google Scholar
     profile:
-        description: Machine Learning Enthiusiat
+        description: Deep Learning Researcher
         image_link: /assets/images/profile.jpg
         location: Milan, Italy
 extra_css:
@@ -63,8 +96,5 @@ nav:
     - Blog:
           - blog.md
     - Art: https://instagram.com/rcmalli
-    - CV: https://rcmalli.github.io/assets/pdfs/rcmalli.eng.2.pdf
-google_analytics:
-    - UA-71868139-1
-    - auto
-copyright: Copyright &copy; 2020 - 2021 Refik Can MALLI
+    - CV: /assets/pdfs/rcmalli.eng.public.v4.pdf
+copyright: Copyright &copy; 2020 - 2022 Refik Can MALLI
