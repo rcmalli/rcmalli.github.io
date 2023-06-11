@@ -6,7 +6,7 @@ hide:
 # Home 
 ## Personal Updates
 
-- **(2023 May)** I gave a talk about [Quadra](https://github.com/orobix/quadra) at [PyCon Italy 2023](https://tr.pycon.org/). You can find the slides [here](/assets/pdfs/quadra_pycon23.pdf).
+- **(2023 May)** I gave a talk about [Quadra](https://github.com/orobix/quadra) at [PyCon Italy 2023](https://pycon.it/en). You can find the slides [here](/assets/pdfs/quadra_pycon23.pdf).
 - **(2021 June)** I have joined to Orobix as a Data Scientist. I am working on computer vision related problems and developing deep learning solutions for industrial applications.
 
  
