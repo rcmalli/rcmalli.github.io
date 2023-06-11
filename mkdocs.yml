@@ -1,30 +1,30 @@
 site_name: Refik Can MALLI
 theme:
-    features:
-        - navigation.tabs
-        - navigation.instant
-        - search.suggest
-        - search.highlight
-    name: material
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+  name: material
 
-    palette:
-      - media: "(prefers-color-scheme: light)"
-        scheme: default
-        primary: blue
-        accent: blue
-        toggle:
-          icon: material/weather-night
-          name: Switch to dark mode
-      - media: "(prefers-color-scheme: dark)"
-        scheme: slate
-        primary: blue
-        accent: blue
-        toggle:
-          icon: material/weather-sunny
-          name: Switch to light mode
-    custom_dir: overrides
-    icon:
-        logo: fontawesome/solid/robot
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  custom_dir: overrides
+  icon:
+    logo: fontawesome/solid/robot
 
 markdown_extensions:
   # Python Markdown
@@ -64,37 +64,37 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 extra:
-    analytics:
-      provider: google
-      property: UA-71868139-1
-    social:
-        - icon: fontawesome/brands/twitter
-          link: https://twitter.com/refikcanmalli
-          name: Twitter
-        - icon: fontawesome/brands/linkedin
-          link: https://www.linkedin.com/in/refik-can-malli/
-          name: Linkedin
-        - icon: fontawesome/brands/github
-          link: https://www.github.com/rcmalli
-          name: GitHub
-        - icon: fontawesome/brands/google
-          link: https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en
-          name: Google Scholar
-    profile:
-        description: Deep Learning Researcher
-        image_link: /assets/images/profile.jpg
-        location: Milan, Italy
+  analytics:
+    provider: google
+    property: UA-71868139-1
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/refikcanmalli
+      name: Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/refik-can-malli/
+      name: Linkedin
+    - icon: fontawesome/brands/github
+      link: https://www.github.com/rcmalli
+      name: GitHub
+    - icon: fontawesome/brands/google
+      link: https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en
+      name: Google Scholar
+  profile:
+    description: Deep Learning Researcher
+    image_link: /assets/images/profile.jpg
+    location: Milan, Italy
 extra_css:
-    - stylesheets/extra.css
-    - https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css
+  - stylesheets/extra.css
+  - https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css
 extra_javascript:
-    - javascripts/extra.js
+  - javascripts/extra.js
 plugins:
-    - search
+  - search
 nav:
-    - Home: index.md
-    - Blog:
-          - blog.md
-    - Art: https://instagram.com/rcmalli
-    - CV: /assets/pdfs/rcmalli.eng.public.v4.pdf
+  - Home: index.md
+  - Blog:
+      - blog.md
+  # - Art: https://instagram.com/rcmalli
+  - CV: /assets/pdfs/rcmalli.eng.public.v4.pdf
 copyright: Copyright &copy; 2020 - 2022 Refik Can MALLI
