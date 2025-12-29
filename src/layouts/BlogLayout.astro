@@ -1,0 +1,123 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { format } from 'date-fns';
+import { TableOfContents } from '@/components/blog/TableOfContents';
+import { ShareButtons } from '@/components/blog/ShareButtons';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, author = 'Refik Can MALLI', tags = [] } = Astro.props;
+---
+
+<BaseLayout
+  title={`${title} | Refik Can MALLI`}
+  description={description}
+  type="article"
+  publishedTime={pubDate.toISOString()}
+  modifiedTime={updatedDate?.toISOString()}
+  tags={tags}
+>
+  <article class="py-14 lg:py-20">
+    <div class="container mx-auto max-w-5xl px-6">
+      <!-- Back link -->
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10 group"
+      >
+        <Icon name="hugeicons:arrow-left-01" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+        <span>Back to blog</span>
+      </a>
+
+      <div class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-16">
+        <!-- Main content -->
+        <div class="min-w-0">
+          <!-- Header -->
+          <header class="mb-12 space-y-6">
+            <!-- Meta info -->
+            <div class="flex items-center gap-3 text-xs font-mono text-muted-foreground tracking-wider uppercase">
+              <time datetime={pubDate.toISOString()}>
+                {format(pubDate, 'MMMM d, yyyy')}
+              </time>
+              {updatedDate && (
+                <>
+                  <span class="text-border">·</span>
+                  <span>Updated {format(updatedDate, 'MMM d, yyyy')}</span>
+                </>
+              )}
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight leading-tight">
+              {title}
+            </h1>
+
+            <!-- Description -->
+            <p class="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              {description}
+            </p>
+
+            <!-- Tags -->
+            {tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 pt-2">
+                {tags.map((tag) => (
+                  <span class="inline-flex items-center rounded-sm bg-muted/60 px-2.5 py-1 text-xs font-mono text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <!-- Header divider -->
+            <div class="h-px bg-gradient-to-r from-border via-border/50 to-transparent"></div>
+          </header>
+
+          <!-- Content -->
+          <div class="prose prose-gray dark:prose-invert max-w-none
+            prose-headings:font-semibold prose-headings:tracking-tight prose-headings:scroll-mt-24
+            prose-h2:text-xl prose-h2:mt-12 prose-h2:mb-4
+            prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
+            prose-p:leading-relaxed prose-p:text-foreground/85
+            prose-a:text-foreground prose-a:underline-offset-4 prose-a:decoration-foreground/30 hover:prose-a:decoration-foreground/60
+            prose-pre:bg-muted prose-pre:border prose-pre:border-border/50 prose-pre:rounded-sm
+            prose-code:before:content-none prose-code:after:content-none prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-sm prose-code:text-sm
+            prose-blockquote:border-l-foreground/20 prose-blockquote:bg-muted/30 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-sm prose-blockquote:not-italic
+            prose-img:rounded-sm prose-img:border prose-img:border-border/50
+            prose-hr:border-border/50
+            prose-li:marker:text-muted-foreground">
+            <slot />
+          </div>
+
+          <!-- Footer -->
+          <footer class="mt-16 pt-8 border-t border-border/50">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                  <span class="text-xs font-medium text-muted-foreground">RC</span>
+                </div>
+                <div class="text-sm">
+                  <p class="text-foreground/80">{author}</p>
+                </div>
+              </div>
+              <ShareButtons title={title} client:load />
+            </div>
+          </footer>
+        </div>
+
+        <!-- TOC Sidebar -->
+        <aside class="hidden lg:block">
+          <div class="sticky top-28">
+            <TableOfContents client:load />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

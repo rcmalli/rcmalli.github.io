@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  description,
+  image = '/assets/images/profile.jpg',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author = 'Refik Can MALLI',
+  tags = [],
+} = Astro.props;
+
+const siteName = 'Refik Can MALLI';
+const twitterHandle = '@refikcanmalli';
+---
+
+<!-- Primary Meta Tags -->
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+{tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.site).href} />
+<meta property="og:site_name" content={siteName} />
+
+{type === 'article' && publishedTime && (
+  <meta property="article:published_time" content={publishedTime} />
+)}
+{type === 'article' && modifiedTime && (
+  <meta property="article:modified_time" content={modifiedTime} />
+)}
+{type === 'article' && author && (
+  <meta property="article:author" content={author} />
+)}
+{type === 'article' && tags.map((tag) => (
+  <meta property="article:tag" content={tag} />
+))}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.site).href} />
+<meta property="twitter:site" content={twitterHandle} />
+<meta property="twitter:creator" content={twitterHandle} />
+
+<!-- JSON-LD Structured Data -->
+{type === 'website' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": author,
+    "url": Astro.site?.href,
+    "jobTitle": "Deep Learning Researcher",
+    "sameAs": [
+      "https://twitter.com/refikcanmalli",
+      "https://linkedin.com/in/refik-can-malli",
+      "https://github.com/rcmalli",
+      "https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en"
+    ]
+  })} />
+)}
+
+{type === 'article' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "image": new URL(image, Astro.site).href,
+    "author": {
+      "@type": "Person",
+      "name": author
+    },
+    "datePublished": publishedTime,
+    "dateModified": modifiedTime || publishedTime
+  })} />
+)}

@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const links = [
+  {
+    href: 'https://twitter.com/refikcanmalli',
+    label: 'Twitter',
+    icon: 'hugeicons:new-twitter',
+  },
+  {
+    href: 'https://linkedin.com/in/refik-can-malli',
+    label: 'LinkedIn',
+    icon: 'hugeicons:linkedin-01',
+  },
+  {
+    href: 'https://github.com/rcmalli',
+    label: 'GitHub',
+    icon: 'hugeicons:github',
+  },
+  {
+    href: 'https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en',
+    label: 'Google Scholar',
+    icon: 'hugeicons:mortarboard-02',
+  },
+];
+---
+
+<div class="flex items-center gap-1">
+  {links.map((link) => (
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group relative p-2.5 rounded-sm transition-all duration-300 text-muted-foreground hover:text-foreground"
+      aria-label={link.label}
+    >
+      <span class="absolute inset-0 rounded-sm bg-foreground/0 group-hover:bg-foreground/8 transition-colors duration-300"></span>
+      <Icon name={link.icon} class="relative w-[18px] h-[18px] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
+    </a>
+  ))}
+</div>

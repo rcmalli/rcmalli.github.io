@@ -1,0 +1,112 @@
+---
+title: "Understanding Adversarial Attacks on Neural Networks"
+description: "A deep dive into perturbation-based adversarial attacks, their mathematical foundations, and defense mechanisms."
+pubDate: 2024-01-15
+tags: ["deep-learning", "adversarial", "neural-networks", "research"]
+draft: false
+---
+
+import { Pseudocode } from '@/components/blog/Pseudocode';
+
+# Introduction
+
+Adversarial attacks have become a critical area of research in deep learning security. These attacks demonstrate that even state-of-the-art neural networks can be fooled by carefully crafted perturbations that are often imperceptible to humans.
+
+> [!NOTE]
+> This post covers the mathematical foundations of adversarial attacks. Familiarity with gradient-based optimization is helpful but not required.
+
+> [!WARNING]
+> Adversarial examples can pose real security risks in deployed ML systems. Always consider robustness when deploying models in safety-critical applications.
+
+## Mathematical Foundation
+
+The core idea behind adversarial attacks is to find a perturbation $\delta$ that, when added to an input $x$, causes the model to misclassify while keeping the perturbation small:
+
+$$
+\underset{\delta}{\text{maximize}} \quad \mathcal{L}(f(x + \delta), y) \quad \text{s.t.} \quad \|\delta\|_p \leq \epsilon
+$$
+
+where $\mathcal{L}$ is the loss function, $f$ is the neural network, $y$ is the true label, and $\epsilon$ bounds the perturbation magnitude.
+
+## Fast Gradient Sign Method (FGSM)
+
+One of the simplest and most effective attacks is FGSM, introduced by Goodfellow et al. The perturbation is computed as:
+
+$$
+\delta = \epsilon \cdot \text{sign}(\nabla_x \mathcal{L}(\theta, x, y))
+$$
+
+This single-step attack follows the gradient direction to maximize the loss.
+
+## Projected Gradient Descent (PGD)
+
+PGD extends FGSM by iteratively applying smaller perturbations:
+
+$$
+x^{t+1} = \Pi_{x + \mathcal{S}} \left( x^t + \alpha \cdot \text{sign}(\nabla_x \mathcal{L}(\theta, x^t, y)) \right)
+$$
+
+where $\Pi$ projects the result back onto the valid perturbation set $\mathcal{S}$.
+
+### PGD Algorithm
+
+The complete PGD attack algorithm can be expressed as follows:
+
+<Pseudocode
+  client:load
+  caption="Algorithm 1: Projected Gradient Descent Attack"
+  code={`\\begin{algorithm}
+\\caption{PGD Attack}
+\\begin{algorithmic}
+\\REQUIRE Input $x$, true label $y$, model $f$, perturbation bound $\\epsilon$, step size $\\alpha$, iterations $T$
+\\ENSURE Adversarial example $x^{adv}$
+\\STATE $x^0 \\gets x + \\text{Uniform}(-\\epsilon, \\epsilon)$ \\COMMENT{Random initialization}
+\\FOR{$t = 0$ \\TO $T-1$}
+    \\STATE $g \\gets \\nabla_x \\mathcal{L}(f(x^t), y)$ \\COMMENT{Compute gradient}
+    \\STATE $x^{t+1} \\gets x^t + \\alpha \\cdot \\text{sign}(g)$ \\COMMENT{Gradient ascent step}
+    \\STATE $x^{t+1} \\gets \\text{clip}(x^{t+1}, x - \\epsilon, x + \\epsilon)$ \\COMMENT{Project to $\\ell_\\infty$ ball}
+    \\STATE $x^{t+1} \\gets \\text{clip}(x^{t+1}, 0, 1)$ \\COMMENT{Clip to valid range}
+\\ENDFOR
+\\RETURN $x^T$
+\\end{algorithmic}
+\\end{algorithm}`}
+/>
+
+## Defense Mechanisms
+
+Several defense strategies have been proposed:
+
+1. **Adversarial Training**: Augmenting training data with adversarial examples
+2. **Input Preprocessing**: Applying transformations to remove perturbations
+3. **Certified Defenses**: Providing provable robustness guarantees
+
+### Adversarial Training Algorithm
+
+The standard adversarial training procedure can be formalized as:
+
+<Pseudocode
+  client:load
+  caption="Algorithm 2: Adversarial Training"
+  code={`\\begin{algorithm}
+\\caption{Adversarial Training}
+\\begin{algorithmic}
+\\REQUIRE Training set $\\mathcal{D}$, model $f_\\theta$, perturbation bound $\\epsilon$, epochs $E$
+\\FOR{$e = 1$ \\TO $E$}
+    \\FOR{mini-batch $(X, Y) \\in \\mathcal{D}$}
+        \\STATE $X^{adv} \\gets \\text{PGD}(X, Y, f_\\theta, \\epsilon)$ \\COMMENT{Generate adversarial examples}
+        \\STATE $\\mathcal{L} \\gets \\frac{1}{|X|} \\sum_{i} \\ell(f_\\theta(x_i^{adv}), y_i)$ \\COMMENT{Compute loss}
+        \\STATE $\\theta \\gets \\theta - \\eta \\nabla_\\theta \\mathcal{L}$ \\COMMENT{Update parameters}
+    \\ENDFOR
+\\ENDFOR
+\\RETURN $f_\\theta$
+\\end{algorithmic}
+\\end{algorithm}`}
+/>
+
+## Conclusion
+
+Understanding adversarial attacks is crucial for deploying neural networks in safety-critical applications. The mathematical framework provides both insight into vulnerabilities and guidance for building more robust models.
+
+---
+
+*This post is based on my thesis research at Politecnico di Milano on adversarial robustness of deep neural networks.*

@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import SocialLinks from './SocialLinks.astro';
+import profileImage from '@/assets/images/profile.jpg';
+---
+
+<section class="relative py-24 lg:py-32 overflow-hidden">
+  <!-- Subtle radial gradient background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/30 via-transparent to-transparent pointer-events-none"></div>
+
+  <!-- Decorative neural constellation - refined -->
+  <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] dark:opacity-[0.07] pointer-events-none hidden lg:block">
+    <svg viewBox="0 0 400 600" class="w-full h-full" aria-hidden="true">
+      <!-- Primary nodes with gentle pulse -->
+      <circle cx="100" cy="100" r="4" fill="currentColor" class="neural-node" style="--delay: 0s" />
+      <circle cx="300" cy="80" r="3" fill="currentColor" class="neural-node" style="--delay: 1s" />
+      <circle cx="180" cy="220" r="5" fill="currentColor" class="neural-node" style="--delay: 2s" />
+      <circle cx="350" cy="300" r="4" fill="currentColor" class="neural-node" style="--delay: 0.5s" />
+      <circle cx="80" cy="380" r="3" fill="currentColor" class="neural-node" style="--delay: 1.5s" />
+      <circle cx="260" cy="450" r="4" fill="currentColor" class="neural-node" style="--delay: 2.5s" />
+      <circle cx="320" cy="550" r="3" fill="currentColor" class="neural-node" style="--delay: 3s" />
+      <!-- Connection paths with gradient strokes -->
+      <path d="M100,100 Q200,60 300,80" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" />
+      <path d="M300,80 Q240,150 180,220" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" style="--delay: 0.2s" />
+      <path d="M180,220 Q265,260 350,300" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" style="--delay: 0.4s" />
+      <path d="M350,300 Q215,340 80,380" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" style="--delay: 0.6s" />
+      <path d="M80,380 Q170,415 260,450" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" style="--delay: 0.8s" />
+      <path d="M260,450 Q290,500 320,550" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4" class="neural-path" style="--delay: 1s" />
+      <!-- Subtle cross-links -->
+      <line x1="100" y1="100" x2="180" y2="220" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4 4" />
+      <line x1="180" y1="220" x2="80" y2="380" stroke="currentColor" stroke-width="0.5" opacity="0.2" stroke-dasharray="4 4" />
+    </svg>
+  </div>
+
+  <div class="container mx-auto max-w-5xl px-6 relative">
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+      <!-- Photo with refined decorative elements -->
+      <div class="relative flex-shrink-0 group">
+        <!-- Outer orbit ring -->
+        <div class="absolute -inset-6 border border-foreground/10 rounded-full translate-x-3 translate-y-3 hidden sm:block transition-transform duration-700 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+        <!-- Middle ring with subtle rotation hint -->
+        <div class="absolute -inset-4 border border-foreground/15 rounded-full -translate-x-1 -translate-y-1 hidden sm:block transition-transform duration-700 group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
+        <!-- Inner glow ring -->
+        <div class="absolute -inset-1 bg-gradient-to-br from-foreground/5 to-transparent rounded-full hidden sm:block"></div>
+        <!-- Main photo container -->
+        <div class="relative w-44 h-44 lg:w-56 lg:h-56 rounded-full ring-2 ring-foreground/10 shadow-xl overflow-hidden bg-muted transition-shadow duration-500 group-hover:shadow-2xl group-hover:ring-foreground/20">
+          <Image
+            src={profileImage}
+            alt="Refik Can MALLI"
+            width={224}
+            height={224}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <!-- Info with staggered reveal -->
+      <div class="space-y-5 text-center lg:text-left flex-1 stagger-children">
+        <div class="space-y-3">
+          <h1 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-light tracking-tight leading-tight">
+            Refik Can <span class="font-semibold">MALLI</span>
+          </h1>
+          <p class="text-muted-foreground text-base lg:text-lg">
+            Deep Learning & Computer Vision
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground/70 text-sm">
+          <Icon name="hugeicons:location-01" class="w-3.5 h-3.5" />
+          <span>Milan, Italy</span>
+        </div>
+
+        <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+          <a
+            href="/assets/pdfs/refikcanmalli_cv_20251229.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-sm border border-[color:var(--chart-2)] px-4 py-2 text-sm font-medium text-[color:var(--chart-2)] transition-colors hover:bg-[color:var(--chart-2)] hover:text-background"
+          >
+            View CV
+          </a>
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 rounded-sm border border-border/60 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+          >
+            Read blog
+          </a>
+        </div>
+
+        <div class="flex justify-center lg:justify-start">
+          <SocialLinks />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .neural-node {
+    animation: neural-pulse 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .neural-path {
+    animation: neural-flow 6s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes neural-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  @keyframes neural-flow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+</style>
