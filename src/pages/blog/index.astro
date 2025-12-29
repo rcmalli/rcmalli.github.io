@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts, filter out drafts in production
+const allPosts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+// Sort by date, newest first
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get unique tags for filtering display
+const allTags = [...new Set(posts.flatMap(post => post.data.tags))];
+---
+
+<BaseLayout title="Blog | Refik Can MALLI" description="Articles on deep learning, computer vision, and machine learning research.">
+  <section class="py-14 lg:py-20">
+    <div class="container mx-auto max-w-5xl px-6">
+      <!-- Header -->
+      <header class="mb-16 relative">
+        <a href="/" class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors group mb-8">
+          <Icon name="hugeicons:arrow-left-01" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+          <span>Home</span>
+        </a>
+
+        <div class="flex items-end justify-between gap-6">
+          <div class="space-y-3">
+            <h1 class="text-3xl lg:text-4xl font-semibold tracking-tight">
+              Blog
+            </h1>
+            <p class="text-muted-foreground text-base lg:text-lg max-w-lg">
+              Thoughts on deep learning, computer vision, and research.
+            </p>
+          </div>
+
+          <!-- Post count badge -->
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-sm bg-muted/50 border border-border/30">
+            <span class="text-lg font-semibold tabular-nums">{posts.length}</span>
+            <span class="text-xs text-muted-foreground uppercase tracking-wider">{posts.length === 1 ? 'article' : 'articles'}</span>
+          </div>
+        </div>
+
+        <!-- Decorative line -->
+        <div class="mt-8 h-px bg-gradient-to-r from-border via-border/50 to-transparent"></div>
+      </header>
+
+      {posts.length === 0 ? (
+        <div class="text-center py-24 space-y-5">
+          <div class="w-20 h-20 mx-auto rounded-full bg-muted/30 border border-border/30 flex items-center justify-center">
+            <Icon name="hugeicons:edit-02" class="w-8 h-8 text-muted-foreground/60" />
+          </div>
+          <div class="space-y-2">
+            <p class="text-foreground/80 text-xl font-light">Coming soon</p>
+            <p class="text-sm text-muted-foreground">New articles are on the way</p>
+          </div>
+        </div>
+      ) : (
+        <div class="space-y-12">
+          <!-- Posts grid -->
+          <div class="grid gap-6 md:grid-cols-2">
+            {posts.map((post, i) => (
+              <div class="animate-fade-up" style={`animation-delay: ${i * 100}ms`}>
+                <BlogCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  pubDate={post.data.pubDate}
+                  tags={post.data.tags}
+                  slug={post.slug}
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Tags footer -->
+          {allTags.length > 0 && (
+            <footer class="pt-10 border-t border-border/40">
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span class="text-xs font-mono text-muted-foreground/60 uppercase tracking-widest">Topics</span>
+                <div class="flex flex-wrap gap-2">
+                  {allTags.map(tag => (
+                    <span class="px-2.5 py-1 rounded-sm bg-muted/40 text-xs font-mono text-muted-foreground border border-border/20 hover:border-border/40 transition-colors">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </footer>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

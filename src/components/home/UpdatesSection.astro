@@ -1,0 +1,68 @@
+---
+const updates = [
+  {
+    year: '2023',
+    month: 'May',
+    title: 'PyCon Italy Talk',
+    description: 'Presented Quadra framework at PyCon Italy 2023',
+    link: '/assets/pdfs/quadra_pycon23.pdf',
+    linkText: 'View slides',
+  },
+  {
+    year: '2021',
+    month: 'June',
+    title: 'Joined Orobix',
+    description: 'Data Scientist working on computer vision and deep learning solutions for industrial applications',
+  },
+];
+---
+
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto max-w-5xl px-6">
+    <div class="mb-12">
+      <h2 class="text-lg lg:text-xl font-light tracking-tight text-muted-foreground">
+        Updates
+      </h2>
+    </div>
+
+    <div class="relative pl-10">
+      <!-- Vertical timeline line -->
+      <div class="absolute left-3 top-2 bottom-2 w-px bg-border"></div>
+
+      <div class="space-y-8">
+        {updates.map((update, i) => (
+          <div
+            class="relative group animate-fade-up"
+            style={`animation-delay: ${i * 100}ms`}
+          >
+            {/* Timeline node */}
+            <div class="absolute -left-7 top-0.5 w-4 h-4 -translate-x-1/2 rounded-full border-2 border-border bg-background group-hover:border-foreground/40 transition-all duration-300">
+              <div class="absolute inset-1 rounded-full bg-muted-foreground/40 group-hover:bg-foreground/60 transition-all duration-300"></div>
+            </div>
+
+            <div class="space-y-2 sm:grid sm:grid-cols-[64px_1fr] sm:gap-3 sm:space-y-0">
+              <div class="text-[11px] font-mono text-muted-foreground/70 uppercase tracking-wider sm:pt-0.5 sm:text-right">
+                {update.month} {update.year}
+              </div>
+              <div class="space-y-2">
+                <h3 class="text-base font-medium leading-snug">{update.title}</h3>
+                <p class="text-sm text-muted-foreground leading-relaxed">{update.description}</p>
+                {update.link && (
+                  <a
+                    href={update.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-foreground transition-colors group/link mt-1"
+                  >
+                    <span class="underline-offset-4 group-hover/link:underline">{update.linkText}</span>
+                    <span class="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
