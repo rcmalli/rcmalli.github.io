@@ -79,7 +79,7 @@ public/
 - **Math Rendering** - KaTeX for LaTeX equations in MDX posts
 - **Responsive Design** - Mobile-first with Tailwind breakpoints
 - **SEO** - Meta tags, Open Graph support
-- **Google Analytics** - UA-71868139-1
+- **Google Analytics 4** - G-XNYHZDV9QB
 
 ## Content Collections
 
