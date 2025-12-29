@@ -1,23 +1,31 @@
 ---
 const updates = [
   {
+    year: '2025',
+    month: 'Feb',
+    title: 'Vertical Technical Leader, Orobix',
+    description: 'Promoted to lead development of Generative AI solutions, combining VLMs, LLMs, and layout models for advanced PDF understanding. Designing agentic workflows.',
+  },
+  {
     year: '2023',
     month: 'May',
     title: 'PyCon Italy Talk',
-    description: 'Presented Quadra framework at PyCon Italy 2023',
-    link: '/assets/pdfs/quadra_pycon23.pdf',
-    linkText: 'View slides',
+    description: 'Presented Quadra, an open-source deep learning experiment management framework integrating PyTorch Lightning and Hydra for reproducible ML workflows.',
+    links: [
+      { url: '/assets/pdfs/quadra_pycon23.pdf', text: 'View slides' },
+      { url: 'https://www.youtube.com/watch?v=y8HSwCUuDgg', text: 'Watch recording' },
+    ],
   },
   {
     year: '2021',
     month: 'June',
-    title: 'Joined Orobix',
-    description: 'Data Scientist working on computer vision and deep learning solutions for industrial applications',
+    title: 'Data Scientist, Orobix',
+    description: 'Trained deep learning models for pharmaceutical and packaging sectors (classification, segmentation, anomaly detection) integrated into AI-go Platform. Contributed to QUALYFruit product for plant disease and fruit quality analysis.',
   },
 ];
 ---
 
-<section class="py-16 lg:py-24">
+<section class="py-10 lg:py-14">
   <div class="container mx-auto max-w-5xl px-6">
     <div class="mb-12">
       <h2 class="text-lg lg:text-xl font-light tracking-tight text-muted-foreground">
@@ -47,16 +55,20 @@ const updates = [
               <div class="space-y-2">
                 <h3 class="text-base font-medium leading-snug">{update.title}</h3>
                 <p class="text-sm text-muted-foreground leading-relaxed">{update.description}</p>
-                {update.link && (
-                  <a
-                    href={update.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-foreground transition-colors group/link mt-1"
-                  >
-                    <span class="underline-offset-4 group-hover/link:underline">{update.linkText}</span>
-                    <span class="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
-                  </a>
+                {update.links && (
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    {update.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-sm border border-border/60 text-foreground/70 hover:border-foreground/40 hover:text-foreground transition-all group/link"
+                      >
+                        <span>{link.text}</span>
+                        <span class="transition-transform duration-200 group-hover/link:translate-x-0.5">→</span>
+                      </a>
+                    ))}
+                  </div>
                 )}
               </div>
             </div>

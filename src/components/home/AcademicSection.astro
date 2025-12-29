@@ -6,6 +6,7 @@ const education = [
     degree: "Master's Degree",
     field: 'Computer Science Engineering',
     school: 'Politecnico di Milano',
+    schoolUrl: 'https://www.polimi.it/',
     location: 'Milan, Italy',
     research: 'Adversarial robustness of Deep Neural Networks. Visualization of perturbation-based adversarial attacks and specialized training methods for robust models.',
     supervisors: [
@@ -17,6 +18,7 @@ const education = [
     degree: "Bachelor's Degree",
     field: 'Electronics and Communication Engineering',
     school: 'Istanbul Technical University',
+    schoolUrl: 'https://www.itu.edu.tr/',
     location: 'Istanbul, Turkey',
     research: 'Facial attribute extraction using convolutional neural networks. Edge deep learning applications on embedded devices.',
     supervisors: [
@@ -26,7 +28,7 @@ const education = [
 ];
 ---
 
-<section class="py-16 lg:py-24">
+<section class="py-10 lg:py-14">
   <div class="container mx-auto max-w-5xl px-6">
     <div class="mb-12">
       <h2 class="text-lg lg:text-xl font-light tracking-tight text-muted-foreground">
@@ -50,7 +52,12 @@ const education = [
                 </div>
               </div>
               <p class="text-sm text-muted-foreground">{edu.field}</p>
-              <p class="text-sm font-medium text-foreground/70">{edu.school}</p>
+              <a
+                href={edu.schoolUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-foreground/70 hover:text-foreground underline-offset-4 hover:underline transition-colors"
+              >{edu.school}</a>
             </div>
 
             <p class="text-sm text-muted-foreground/80 leading-relaxed">
