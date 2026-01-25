@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  showArrow?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  external = true,
+  showArrow = true,
+  class: className = '',
+} = Astro.props;
+
+const baseClasses = 'group btn btn-secondary btn-sm';
+const combinedClasses = [baseClasses, className].filter(Boolean).join(' ');
+
+const externalProps = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+---
+
+<a href={href} class={combinedClasses} {...externalProps}>
+  <span class="btn-text"><slot /></span>
+  {showArrow && <span class="btn-arrow">→</span>}
+</a>

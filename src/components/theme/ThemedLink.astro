@@ -1,0 +1,35 @@
+---
+interface Props {
+  href: string;
+  variant?: 'nav' | 'text';
+  external?: boolean;
+  active?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'text',
+  external = false,
+  active = false,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  nav: 'link-nav',
+  text: 'link-text',
+};
+
+const baseClass = variantClasses[variant];
+const combinedClasses = [baseClass, className].filter(Boolean).join(' ');
+
+const externalProps = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+
+const activeProps = active ? { 'aria-current': 'page' as const } : {};
+---
+
+<a href={href} class={combinedClasses} {...externalProps} {...activeProps}>
+  <slot />
+</a>

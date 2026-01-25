@@ -14,9 +14,9 @@ const { title, description, pubDate, tags, slug } = Astro.props;
 ---
 
 <a href={`/blog/${slug}`} class="group block h-full">
-  <article class="p-6 h-full rounded-sm border border-border/50 hover:border-border transition-all duration-300 bg-card/40 hover:bg-card/70 relative overflow-hidden flex flex-col">
+  <article class="p-6 h-full card-interactive flex flex-col">
     <!-- Top accent line -->
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/5 to-transparent group-hover:via-foreground/20 transition-all duration-500"></div>
+    <div class="card-accent-top"></div>
 
     <div class="space-y-4 flex-1">
       <!-- Date & Arrow -->
@@ -24,8 +24,8 @@ const { title, description, pubDate, tags, slug } = Astro.props;
         <time datetime={pubDate.toISOString()} class="text-xs font-mono text-muted-foreground/70 tracking-wider">
           {format(pubDate, 'MMM d, yyyy').toUpperCase()}
         </time>
-        <div class="w-8 h-8 rounded-sm bg-muted/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5">
-          <Icon name="hugeicons:arrow-right-01" class="w-4 h-4 text-foreground/70" />
+        <div class="hover-arrow-box">
+          <Icon name="hugeicons:arrow-right-01" />
         </div>
       </div>
 
@@ -55,9 +55,9 @@ const { title, description, pubDate, tags, slug } = Astro.props;
     )}
 
     <!-- Corner accent on hover -->
-    <div class="absolute bottom-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-      <div class="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-foreground/10 to-transparent"></div>
-      <div class="absolute bottom-0 right-0 h-full w-px bg-gradient-to-t from-foreground/10 to-transparent"></div>
+    <div class="card-accent-corner">
+      <div class="card-accent-corner-line-h"></div>
+      <div class="card-accent-corner-line-v"></div>
     </div>
   </article>
 </a>

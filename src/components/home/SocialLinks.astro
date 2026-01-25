@@ -31,10 +31,10 @@ const links = [
       href={link.href}
       target="_blank"
       rel="noopener noreferrer"
-      class="group relative p-2.5 rounded-sm transition-all duration-300 text-muted-foreground hover:text-foreground"
+      class="group relative p-2.5 rounded-sm transition-all duration-300 text-foreground/60 hover:text-[color:var(--accent-blue)]"
       aria-label={link.label}
     >
-      <span class="absolute inset-0 rounded-sm bg-foreground/0 group-hover:bg-foreground/8 transition-colors duration-300"></span>
+      <span class="absolute inset-0 rounded-sm bg-[color:var(--accent-blue)] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></span>
       <Icon name={link.icon} class="relative w-[18px] h-[18px] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
     </a>
   ))}

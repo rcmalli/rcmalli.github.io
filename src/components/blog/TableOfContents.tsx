@@ -104,7 +104,7 @@ export function TableOfContents() {
               {/* Active marker */}
               {isActive && (
                 <div
-                  className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-4 bg-foreground transition-all duration-200"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-4 bg-[color:var(--accent-blue)] transition-all duration-200"
                   style={{ marginLeft: '-0.5px' }}
                 />
               )}
@@ -116,8 +116,8 @@ export function TableOfContents() {
                   ${heading.level === 3 ? 'pl-5' : ''}
                   ${
                     isActive
-                      ? 'text-foreground'
-                      : 'text-muted-foreground/70 hover:text-foreground'
+                      ? 'text-[color:var(--accent-blue)]'
+                      : 'text-muted-foreground/70 hover:text-[color:var(--accent-blue)]'
                   }
                 `}
               >

@@ -1,0 +1,48 @@
+---
+interface Props {
+  href?: string;
+  as?: 'div' | 'article' | 'section';
+  padding?: 'none' | 'sm' | 'default' | 'lg';
+  animationDelay?: number;
+  class?: string;
+}
+
+const {
+  href,
+  as: Element = 'div',
+  padding = 'default',
+  animationDelay,
+  class: className = '',
+} = Astro.props;
+
+const paddingClasses = {
+  none: '',
+  sm: 'p-4',
+  default: 'p-6',
+  lg: 'p-8',
+};
+
+const baseClasses = 'group card-interactive flex flex-col h-full animate-fade-up';
+const paddingClass = paddingClasses[padding];
+const combinedClasses = [baseClasses, paddingClass, className].filter(Boolean).join(' ');
+
+const style = animationDelay !== undefined ? `animation-delay: ${animationDelay}ms` : undefined;
+
+const isLink = !!href;
+const Wrapper = isLink ? 'a' : Element;
+const wrapperProps = isLink ? { href } : {};
+---
+
+<Wrapper class={combinedClasses} style={style} {...wrapperProps}>
+  <!-- Top accent line -->
+  <div class="card-accent-top"></div>
+
+  <!-- Content -->
+  <slot />
+
+  <!-- Corner accent on hover -->
+  <div class="card-accent-corner">
+    <div class="card-accent-corner-line-h"></div>
+    <div class="card-accent-corner-line-v"></div>
+  </div>
+</Wrapper>

@@ -1,0 +1,35 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+  size?: 'default' | 'sm';
+  icon?: string;
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'default',
+  icon,
+  external = false,
+  class: className = '',
+} = Astro.props;
+
+const baseClasses = 'group btn';
+const variantClasses = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
+const sizeClasses = size === 'sm' ? 'btn-sm' : '';
+const combinedClasses = [baseClasses, variantClasses, sizeClasses, className].filter(Boolean).join(' ');
+
+const externalProps = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+---
+
+<a href={href} class={combinedClasses} {...externalProps}>
+  {icon && <Icon name={icon} class="btn-icon" />}
+  <span class="btn-text"><slot /></span>
+</a>

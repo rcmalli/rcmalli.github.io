@@ -60,12 +60,12 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
         aria-label="Navigation menu"
       >
         {/* Decorative accent line */}
-        <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-foreground/20 to-transparent" />
+        <div className="absolute top-0 left-0 w-px h-full bg-[color:var(--accent-blue)] opacity-40" />
 
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-sm text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-200"
+          className="absolute top-5 right-5 p-2 rounded-sm text-foreground/60 hover:text-[color:var(--accent-blue)] hover:bg-foreground/10 transition-all duration-200"
           aria-label="Close menu"
         >
           <svg
@@ -84,7 +84,7 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
 
         {/* Header */}
         <div className="pt-20 px-8 pb-6 border-b border-border/50">
-          <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase">Menu</span>
+          <span className="text-xs font-mono text-foreground/50 tracking-[0.3em] uppercase">Menu</span>
         </div>
 
         {/* Navigation links */}
@@ -105,7 +105,7 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
                   rel={link.external ? 'noopener noreferrer' : undefined}
                   className="group flex items-center py-4 text-lg font-medium text-foreground/70 hover:text-foreground transition-colors"
                 >
-                  <span className="w-0 h-px bg-foreground/50 group-hover:w-4 transition-all duration-200 mr-0 group-hover:mr-3" />
+                  <span className="w-0 h-px bg-[color:var(--accent-blue)] group-hover:w-4 transition-all duration-200 mr-0 group-hover:mr-3" />
                   {link.label}
                   {link.external && (
                     <svg
@@ -126,9 +126,9 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
 
         {/* Footer decoration */}
         <div className="absolute bottom-8 left-8 right-8">
-          <div className="flex items-center gap-2 text-muted-foreground/50">
-            <div className="w-2 h-2 rounded-full bg-current animate-pulse" />
-            <div className="flex-1 h-px bg-gradient-to-r from-current to-transparent" />
+          <div className="flex items-center gap-2 text-foreground/45">
+            <div className="w-2 h-2 rounded-full bg-[color:var(--accent-blue)] animate-pulse" />
+            <div className="flex-1 h-px bg-[color:var(--accent-blue)] opacity-40" />
           </div>
         </div>
       </div>

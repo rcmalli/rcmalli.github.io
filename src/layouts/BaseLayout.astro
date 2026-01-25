@@ -52,12 +52,9 @@ const {
     <!-- Analytics -->
     <Analytics />
 
-    <!-- Theme initialization script (runs before page render to prevent flash) -->
+    <!-- Always use dark theme -->
     <script is:inline>
-      // Default to dark theme, only use light if explicitly saved or system prefers light
-      const savedTheme = localStorage.getItem('theme');
-      const theme = savedTheme || 'dark';
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.documentElement.classList.add('dark');
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
