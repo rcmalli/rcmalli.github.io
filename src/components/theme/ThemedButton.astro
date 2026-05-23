@@ -1,10 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { cn } from '@/lib/utils';
+import { themedButton, type ThemedButtonVariants } from '@/components/ui/themed-variants';
 
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary';
-  size?: 'default' | 'sm';
+  variant?: ThemedButtonVariants['variant'];
+  size?: ThemedButtonVariants['size'];
   icon?: string;
   external?: boolean;
   class?: string;
@@ -19,17 +21,12 @@ const {
   class: className = '',
 } = Astro.props;
 
-const baseClasses = 'group btn';
-const variantClasses = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
-const sizeClasses = size === 'sm' ? 'btn-sm' : '';
-const combinedClasses = [baseClasses, variantClasses, sizeClasses, className].filter(Boolean).join(' ');
-
 const externalProps = external
   ? { target: '_blank', rel: 'noopener noreferrer' }
   : {};
 ---
 
-<a href={href} class={combinedClasses} {...externalProps}>
-  {icon && <Icon name={icon} class="btn-icon" />}
-  <span class="btn-text"><slot /></span>
+<a href={href} class={cn(themedButton({ variant, size }), className)} {...externalProps}>
+  {icon && <Icon name={icon} class="relative w-4 h-4 transition-transform duration-300 group-hover:scale-110" />}
+  <span class="relative"><slot /></span>
 </a>

@@ -1,6 +1,7 @@
 ---
 import { format } from 'date-fns';
 import { Icon } from 'astro-icon/components';
+import ThemedCard from '@/components/theme/ThemedCard.astro';
 
 interface Props {
   title: string;
@@ -13,11 +14,8 @@ interface Props {
 const { title, description, pubDate, tags, slug } = Astro.props;
 ---
 
-<a href={`/blog/${slug}`} class="group block h-full">
-  <article class="p-6 h-full card-interactive flex flex-col">
-    <!-- Top accent line -->
-    <div class="card-accent-top"></div>
-
+<a href={`/blog/${slug}`} class="block h-full">
+  <ThemedCard as="article">
     <div class="space-y-4 flex-1">
       <!-- Date & Arrow -->
       <div class="flex items-center justify-between">
@@ -53,11 +51,5 @@ const { title, description, pubDate, tags, slug } = Astro.props;
         )}
       </div>
     )}
-
-    <!-- Corner accent on hover -->
-    <div class="card-accent-corner">
-      <div class="card-accent-corner-line-h"></div>
-      <div class="card-accent-corner-line-v"></div>
-    </div>
-  </article>
+  </ThemedCard>
 </a>
