@@ -1,5 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { cn } from '@/lib/utils';
+import { themedIconButton } from '@/components/ui/themed-variants';
 
 const links = [
   {
@@ -26,16 +28,20 @@ const links = [
 ---
 
 <div class="flex items-center gap-1">
-  {links.map((link) => (
-    <a
-      href={link.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="group relative p-2.5 rounded-sm transition-all duration-300 text-foreground/60 hover:text-[color:var(--accent-blue)]"
-      aria-label={link.label}
-    >
-      <span class="absolute inset-0 rounded-sm bg-[color:var(--accent-blue)] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></span>
-      <Icon name={link.icon} class="relative w-[18px] h-[18px] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" />
-    </a>
-  ))}
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={cn(themedIconButton({ tone: 'accent' }))}
+        aria-label={link.label}
+      >
+        <Icon
+          name={link.icon}
+          class="relative w-[18px] h-[18px] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5"
+        />
+      </a>
+    ))
+  }
 </div>

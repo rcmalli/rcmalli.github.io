@@ -13,8 +13,11 @@ import profileImage from '@/assets/images/profile.jpg';
     <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
       <!-- Photo with refined decorative elements -->
       <div class="relative flex-shrink-0 group">
-        <div class="absolute -inset-8 rounded-full border border-foreground/10 hidden sm:block"></div>
-        <div class="relative w-48 h-48 lg:w-60 lg:h-60 rounded-full ring-1 ring-white/12 shadow-[0_35px_80px_rgba(0,0,0,0.6)] overflow-hidden bg-card/40 transition-transform duration-700 group-hover:scale-[1.02]">
+        <div class="absolute -inset-8 rounded-full border border-foreground/10 hidden sm:block">
+        </div>
+        <div
+          class="relative w-48 h-48 lg:w-60 lg:h-60 rounded-full ring-1 ring-white/12 shadow-[0_35px_80px_rgba(0,0,0,0.6)] overflow-hidden bg-card/40 transition-transform duration-700 group-hover:scale-[1.02]"
+        >
           <Image
             src={profileImage}
             alt="Refik Can MALLI"
@@ -29,7 +32,9 @@ import profileImage from '@/assets/images/profile.jpg';
       <!-- Info with staggered reveal -->
       <div class="space-y-5 text-center lg:text-left flex-1 stagger-children">
         <div class="space-y-3">
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.2rem] font-medium tracking-tight leading-tight">
+          <h1
+            class="font-display text-4xl sm:text-5xl lg:text-[3.2rem] font-medium tracking-tight leading-tight"
+          >
             Refik Can <span class="font-semibold">MALLI</span>
           </h1>
           <p class="text-foreground/70 text-base lg:text-lg">
@@ -37,7 +42,9 @@ import profileImage from '@/assets/images/profile.jpg';
           </p>
         </div>
 
-        <div class="flex items-center justify-center lg:justify-start gap-2 text-foreground/60 text-sm">
+        <div
+          class="flex items-center justify-center lg:justify-start gap-2 text-foreground/60 text-sm"
+        >
           <Icon name="hugeicons:location-01" class="w-3.5 h-3.5 text-[color:var(--accent-blue)]" />
           <span>Milan, Italy</span>
         </div>
@@ -51,11 +58,7 @@ import profileImage from '@/assets/images/profile.jpg';
           >
             View CV
           </ThemedButton>
-          <ThemedButton
-            href="/blog"
-            variant="secondary"
-            icon="hugeicons:book-02"
-          >
+          <ThemedButton href="/blog" variant="secondary" icon="hugeicons:book-02">
             Read blog
           </ThemedButton>
         </div>

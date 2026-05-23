@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { themedLink } from '@/components/ui/themed-variants';
+import { cn } from '@/lib/utils';
 
 interface TocItem {
   id: string;
@@ -66,7 +68,9 @@ export function TableOfContents() {
       }
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => {
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -111,15 +115,11 @@ export function TableOfContents() {
               <a
                 href={`#${heading.id}`}
                 onClick={(e) => handleClick(e, heading.id)}
-                className={`
-                  block text-[13px] leading-relaxed py-1.5 pl-3 transition-all duration-200
-                  ${heading.level === 3 ? 'pl-5' : ''}
-                  ${
-                    isActive
-                      ? 'text-[color:var(--accent-blue)]'
-                      : 'text-muted-foreground/70 hover:text-[color:var(--accent-blue)]'
-                  }
-                `}
+                aria-current={isActive ? 'location' : undefined}
+                className={cn(
+                  themedLink({ variant: 'toc', active: isActive }),
+                  heading.level === 3 ? 'pl-5' : 'pl-3'
+                )}
               >
                 {heading.text}
               </a>

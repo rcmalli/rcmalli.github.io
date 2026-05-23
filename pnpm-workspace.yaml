@@ -1,0 +1,13 @@
+# pnpm settings — applies even when this isn't a monorepo
+
+# 7-day security gate: blocks installation of any package version younger
+# than 7 days (10080 minutes). Defense against freshly-published malicious
+# package versions; most attacks get caught and pulled within a few days.
+# Override per-package with minimumReleaseAgeExclude if needed.
+minimumReleaseAge: 10080
+
+# Approved post-install scripts. Both are legitimate native deps required
+# by Astro: esbuild for the transformer, sharp for image optimization.
+allowBuilds:
+  esbuild: true
+  sharp: true

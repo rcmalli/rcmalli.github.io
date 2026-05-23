@@ -9,19 +9,20 @@ interface Props {
   class?: string;
 }
 
-const {
-  href,
-  external = true,
-  showArrow = true,
-  class: className = '',
-} = Astro.props;
+const { href, external = true, showArrow = true, class: className = '' } = Astro.props;
 
-const externalProps = external
-  ? { target: '_blank', rel: 'noopener noreferrer' }
-  : {};
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
-<a href={href} class={cn(themedButton({ variant: 'secondary', size: 'sm' }), className)} {...externalProps}>
+<a
+  href={href}
+  class={cn(themedButton({ variant: 'secondary', size: 'sm' }), className)}
+  {...externalProps}
+>
   <span class="relative"><slot /></span>
-  {showArrow && <span class="relative transition-transform duration-200 group-hover:translate-x-0.5">→</span>}
+  {
+    showArrow && (
+      <span class="relative transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+    )
+  }
 </a>

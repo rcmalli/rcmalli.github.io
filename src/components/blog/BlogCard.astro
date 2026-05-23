@@ -19,7 +19,10 @@ const { title, description, pubDate, tags, slug } = Astro.props;
     <div class="space-y-4 flex-1">
       <!-- Date & Arrow -->
       <div class="flex items-center justify-between">
-        <time datetime={pubDate.toISOString()} class="text-xs font-mono text-muted-foreground/70 tracking-wider">
+        <time
+          datetime={pubDate.toISOString()}
+          class="text-xs font-mono text-muted-foreground/70 tracking-wider"
+        >
           {format(pubDate, 'MMM d, yyyy').toUpperCase()}
         </time>
         <div class="hover-arrow-box">
@@ -28,7 +31,9 @@ const { title, description, pubDate, tags, slug } = Astro.props;
       </div>
 
       <!-- Title -->
-      <h3 class="text-lg font-semibold leading-snug tracking-tight text-foreground/90 group-hover:text-foreground transition-colors">
+      <h3
+        class="text-lg font-semibold leading-snug tracking-tight text-foreground/90 group-hover:text-foreground transition-colors"
+      >
         {title}
       </h3>
 
@@ -39,17 +44,21 @@ const { title, description, pubDate, tags, slug } = Astro.props;
     </div>
 
     <!-- Tags -->
-    {tags.length > 0 && (
-      <div class="flex flex-wrap gap-1.5 pt-5 mt-auto border-t border-border/30">
-        {tags.slice(0, 3).map((tag) => (
-          <span class="inline-flex items-center rounded-sm bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-muted-foreground/80 border border-border/20">
-            {tag}
-          </span>
-        ))}
-        {tags.length > 3 && (
-          <span class="text-[11px] text-muted-foreground/50 self-center ml-1">+{tags.length - 3}</span>
-        )}
-      </div>
-    )}
+    {
+      tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 pt-5 mt-auto border-t border-border/30">
+          {tags.slice(0, 3).map((tag) => (
+            <span class="inline-flex items-center rounded-sm bg-muted/40 px-2 py-0.5 text-[11px] font-mono text-muted-foreground/80 border border-border/20">
+              {tag}
+            </span>
+          ))}
+          {tags.length > 3 && (
+            <span class="text-[11px] text-muted-foreground/50 self-center ml-1">
+              +{tags.length - 3}
+            </span>
+          )}
+        </div>
+      )
+    }
   </ThemedCard>
 </a>

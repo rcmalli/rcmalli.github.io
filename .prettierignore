@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+graphify-out
+public
+
+# Inline GA4 snippet trips prettier-plugin-astro's JS parser inside the
+# define:vars script. The snippet is Google's canonical boilerplate — skip.
+src/components/common/Analytics.astro

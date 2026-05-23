@@ -27,14 +27,25 @@ const wrapperProps = isLink ? { href } : {};
 
 <Wrapper class={cn(themedCard({ padding }), className)} style={style} {...wrapperProps}>
   <!-- Top accent line -->
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/5 to-transparent transition-all duration-500 group-hover:via-[color:var(--accent-blue)]/40"></div>
+  <div
+    class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/5 to-transparent transition-all duration-500 group-hover:via-[color:var(--accent-blue)]/40"
+  >
+  </div>
 
   <!-- Content -->
   <slot />
 
   <!-- Corner accent on hover -->
-  <div class="absolute bottom-0 right-0 w-24 h-24 opacity-0 transition-opacity duration-500 pointer-events-none group-hover:opacity-100">
-    <div class="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-[color:var(--accent-blue)]/20 to-transparent"></div>
-    <div class="absolute bottom-0 right-0 h-full w-px bg-gradient-to-t from-[color:var(--accent-blue)]/20 to-transparent"></div>
+  <div
+    class="absolute bottom-0 right-0 w-24 h-24 opacity-0 transition-opacity duration-500 pointer-events-none group-hover:opacity-100"
+  >
+    <div
+      class="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-[color:var(--accent-blue)]/20 to-transparent"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 right-0 h-full w-px bg-gradient-to-t from-[color:var(--accent-blue)]/20 to-transparent"
+    >
+    </div>
   </div>
 </Wrapper>

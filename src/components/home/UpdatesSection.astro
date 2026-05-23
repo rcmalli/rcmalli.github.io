@@ -6,13 +6,15 @@ const updates = [
     year: '2025',
     month: 'Feb',
     title: 'Vertical Technical Leader, Orobix',
-    description: 'Promoted to lead development of Generative AI solutions, combining VLMs, LLMs, and layout models for advanced PDF understanding. Designing agentic workflows.',
+    description:
+      'Promoted to lead development of Generative AI solutions, combining VLMs, LLMs, and layout models for advanced PDF understanding. Designing agentic workflows.',
   },
   {
     year: '2023',
     month: 'May',
     title: 'PyCon Italy Talk',
-    description: 'Presented Quadra, an open-source deep learning experiment management framework integrating PyTorch Lightning and Hydra for reproducible ML workflows.',
+    description:
+      'Presented Quadra, an open-source deep learning experiment management framework integrating PyTorch Lightning and Hydra for reproducible ML workflows.',
     links: [
       { url: '/assets/pdfs/quadra_pycon23.pdf', text: 'View slides' },
       { url: 'https://www.youtube.com/watch?v=y8HSwCUuDgg', text: 'Watch recording' },
@@ -22,7 +24,8 @@ const updates = [
     year: '2021',
     month: 'June',
     title: 'Data Scientist, Orobix',
-    description: 'Trained deep learning models for pharmaceutical and packaging sectors (classification, segmentation, anomaly detection) integrated into AI-go Platform. Contributed to QUALYFruit product for plant disease and fruit quality analysis.',
+    description:
+      'Trained deep learning models for pharmaceutical and packaging sectors (classification, segmentation, anomaly detection) integrated into AI-go Platform. Contributed to QUALYFruit product for plant disease and fruit quality analysis.',
   },
 ];
 ---
@@ -37,39 +40,37 @@ const updates = [
 
     <div class="relative pl-10">
       <!-- Vertical timeline line -->
-      <div class="absolute left-3 top-2 bottom-2 w-px bg-[color:var(--accent-blue)] opacity-35"></div>
+      <div class="absolute left-3 top-2 bottom-2 w-px bg-[color:var(--accent-blue)] opacity-35">
+      </div>
 
       <div class="space-y-8">
-        {updates.map((update, i) => (
-          <div
-            class="relative group animate-fade-up"
-            style={`animation-delay: ${i * 100}ms`}
-          >
-            {/* Timeline node */}
-            <div class="absolute -left-7 top-0.5 w-4 h-4 -translate-x-1/2 rounded-full border-2 border-[color:var(--accent-blue)] bg-background/80 transition-all duration-300 group-hover:border-[color:var(--accent-blue)]">
-              <div class="absolute inset-1 rounded-full bg-[color:var(--accent-blue)] opacity-60 transition-all duration-300 group-hover:opacity-100"></div>
-            </div>
+        {
+          updates.map((update, i) => (
+            <div class="relative group animate-fade-up" style={`animation-delay: ${i * 100}ms`}>
+              {/* Timeline node */}
+              <div class="absolute -left-7 top-0.5 w-4 h-4 -translate-x-1/2 rounded-full border-2 border-[color:var(--accent-blue)] bg-background/80 transition-all duration-300 group-hover:border-[color:var(--accent-blue)]">
+                <div class="absolute inset-1 rounded-full bg-[color:var(--accent-blue)] opacity-60 transition-all duration-300 group-hover:opacity-100" />
+              </div>
 
-            <div class="space-y-2 sm:grid sm:grid-cols-[64px_1fr] sm:gap-3 sm:space-y-0">
-              <div class="text-[11px] font-mono text-foreground/50 uppercase tracking-[0.2em] sm:pt-0.5 sm:text-right">
-                {update.month} {update.year}
-              </div>
-              <div class="space-y-2">
-                <h3 class="text-base font-medium leading-snug">{update.title}</h3>
-                <p class="text-sm text-foreground/65 leading-relaxed">{update.description}</p>
-                {update.links && (
-                  <div class="flex flex-wrap gap-2 mt-2">
-                    {update.links.map((link) => (
-                      <ThemedLinkButton href={link.url}>
-                        {link.text}
-                      </ThemedLinkButton>
-                    ))}
-                  </div>
-                )}
+              <div class="space-y-2 sm:grid sm:grid-cols-[64px_1fr] sm:gap-3 sm:space-y-0">
+                <div class="text-[11px] font-mono text-foreground/50 uppercase tracking-[0.2em] sm:pt-0.5 sm:text-right">
+                  {update.month} {update.year}
+                </div>
+                <div class="space-y-2">
+                  <h3 class="text-base font-medium leading-snug">{update.title}</h3>
+                  <p class="text-sm text-foreground/65 leading-relaxed">{update.description}</p>
+                  {update.links && (
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      {update.links.map((link) => (
+                        <ThemedLinkButton href={link.url}>{link.text}</ThemedLinkButton>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </div>

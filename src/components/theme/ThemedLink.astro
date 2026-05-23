@@ -18,9 +18,7 @@ const {
   class: className = '',
 } = Astro.props;
 
-const externalProps = external
-  ? { target: '_blank', rel: 'noopener noreferrer' }
-  : {};
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
 const activeProps = active ? { 'aria-current': 'page' as const } : {};
 ---
