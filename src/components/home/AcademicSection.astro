@@ -10,10 +10,17 @@ const education = [
     school: 'Politecnico di Milano',
     schoolUrl: 'https://www.polimi.it/',
     location: 'Milan, Italy',
-    research: 'Adversarial robustness of Deep Neural Networks. Visualization of perturbation-based adversarial attacks and specialized training methods for robust models.',
+    research:
+      'Adversarial robustness of Deep Neural Networks. Visualization of perturbation-based adversarial attacks and specialized training methods for robust models.',
     supervisors: [
-      { name: 'Marco Ciccone', url: 'https://scholar.google.com/citations?user=hOQjblcAAAAJ&hl=en' },
-      { name: 'Prof. Matteo Matteucci', url: 'https://scholar.google.com/citations?user=PdbEg5YAAAAJ&hl=en' },
+      {
+        name: 'Marco Ciccone',
+        url: 'https://scholar.google.com/citations?user=hOQjblcAAAAJ&hl=en',
+      },
+      {
+        name: 'Prof. Matteo Matteucci',
+        url: 'https://scholar.google.com/citations?user=PdbEg5YAAAAJ&hl=en',
+      },
     ],
   },
   {
@@ -22,9 +29,13 @@ const education = [
     school: 'Istanbul Technical University',
     schoolUrl: 'https://www.itu.edu.tr/',
     location: 'Istanbul, Turkey',
-    research: 'Facial attribute extraction using convolutional neural networks. Edge deep learning applications on embedded devices.',
+    research:
+      'Facial attribute extraction using convolutional neural networks. Edge deep learning applications on embedded devices.',
     supervisors: [
-      { name: 'Prof. Hazim Kemal Ekenel', url: 'https://scholar.google.com/citations?user=LfIDj68AAAAJ&hl=en' },
+      {
+        name: 'Prof. Hazim Kemal Ekenel',
+        url: 'https://scholar.google.com/citations?user=LfIDj68AAAAJ&hl=en',
+      },
     ],
   },
 ];
@@ -39,42 +50,49 @@ const education = [
     </div>
 
     <div class="grid gap-6 md:grid-cols-2">
-      {education.map((edu, i) => (
-        <ThemedCard animationDelay={i * 100}>
-          <div class="space-y-5 flex-1">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <h3 class="text-base font-semibold leading-snug">{edu.degree}</h3>
-                <div class="flex items-center gap-1 text-xs text-foreground/50">
-                  <Icon name="hugeicons:location-01" class="w-3 h-3 text-[color:var(--accent-blue)]" />
-                  <span>{edu.location}</span>
+      {
+        education.map((edu, i) => (
+          <ThemedCard animationDelay={i * 100}>
+            <div class="space-y-5 flex-1">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold leading-snug">{edu.degree}</h3>
+                  <div class="flex items-center gap-1 text-xs text-foreground/50">
+                    <Icon
+                      name="hugeicons:location-01"
+                      class="w-3 h-3 text-[color:var(--accent-blue)]"
+                    />
+                    <span>{edu.location}</span>
+                  </div>
                 </div>
+                <p class="text-sm text-foreground/60">{edu.field}</p>
+                <ThemedLink
+                  href={edu.schoolUrl}
+                  variant="text"
+                  external
+                  class="text-sm font-medium"
+                >
+                  {edu.school}
+                </ThemedLink>
               </div>
-              <p class="text-sm text-foreground/60">{edu.field}</p>
-              <ThemedLink href={edu.schoolUrl} variant="text" external class="text-sm font-medium">
-                {edu.school}
-              </ThemedLink>
+
+              <p class="text-sm text-foreground/65 leading-relaxed">{edu.research}</p>
             </div>
 
-            <p class="text-sm text-foreground/65 leading-relaxed">
-              {edu.research}
-            </p>
-          </div>
-
-          <div class="text-sm pt-3 border-t border-border/30 mt-auto min-h-[2.5rem] leading-relaxed">
-            <span class="text-foreground/50">Supervised by </span>
-            {edu.supervisors.map((sup, j) => (
-              <>
-                <ThemedLink href={sup.url} variant="text" external class="text-foreground/60">
-                  {sup.name}
-                </ThemedLink>{j < edu.supervisors.length - 1 && (
-                  <span class="text-foreground/45">, </span>
-                )}
-              </>
-            ))}
-          </div>
-        </ThemedCard>
-      ))}
+            <div class="text-sm pt-3 border-t border-border/30 mt-auto min-h-[2.5rem] leading-relaxed">
+              <span class="text-foreground/50">Supervised by </span>
+              {edu.supervisors.map((sup, j) => (
+                <>
+                  <ThemedLink href={sup.url} variant="text" external class="text-foreground/60">
+                    {sup.name}
+                  </ThemedLink>
+                  {j < edu.supervisors.length - 1 && <span class="text-foreground/45">, </span>}
+                </>
+              ))}
+            </div>
+          </ThemedCard>
+        ))
+      }
     </div>
   </div>
 </section>

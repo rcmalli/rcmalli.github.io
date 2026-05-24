@@ -1,7 +1,10 @@
 ---
+import { cn } from '@/lib/utils';
+import { themedLink, type ThemedLinkVariants } from '@/components/ui/themed-variants';
+
 interface Props {
   href: string;
-  variant?: 'nav' | 'text';
+  variant?: ThemedLinkVariants['variant'];
   external?: boolean;
   active?: boolean;
   class?: string;
@@ -15,21 +18,11 @@ const {
   class: className = '',
 } = Astro.props;
 
-const variantClasses = {
-  nav: 'link-nav',
-  text: 'link-text',
-};
-
-const baseClass = variantClasses[variant];
-const combinedClasses = [baseClass, className].filter(Boolean).join(' ');
-
-const externalProps = external
-  ? { target: '_blank', rel: 'noopener noreferrer' }
-  : {};
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
 const activeProps = active ? { 'aria-current': 'page' as const } : {};
 ---
 
-<a href={href} class={combinedClasses} {...externalProps} {...activeProps}>
+<a href={href} class={cn(themedLink({ variant }), className)} {...externalProps} {...activeProps}>
   <slot />
 </a>

@@ -1,4 +1,7 @@
 ---
+import { cn } from '@/lib/utils';
+import { themedButton } from '@/components/ui/themed-variants';
+
 interface Props {
   href: string;
   external?: boolean;
@@ -6,22 +9,20 @@ interface Props {
   class?: string;
 }
 
-const {
-  href,
-  external = true,
-  showArrow = true,
-  class: className = '',
-} = Astro.props;
+const { href, external = true, showArrow = true, class: className = '' } = Astro.props;
 
-const baseClasses = 'group btn btn-secondary btn-sm';
-const combinedClasses = [baseClasses, className].filter(Boolean).join(' ');
-
-const externalProps = external
-  ? { target: '_blank', rel: 'noopener noreferrer' }
-  : {};
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
-<a href={href} class={combinedClasses} {...externalProps}>
-  <span class="btn-text"><slot /></span>
-  {showArrow && <span class="btn-arrow">→</span>}
+<a
+  href={href}
+  class={cn(themedButton({ variant: 'secondary', size: 'sm' }), className)}
+  {...externalProps}
+>
+  <span class="relative"><slot /></span>
+  {
+    showArrow && (
+      <span class="relative transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+    )
+  }
 </a>

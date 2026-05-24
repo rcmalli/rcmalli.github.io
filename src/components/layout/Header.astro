@@ -6,17 +6,19 @@ const pathname = Astro.url?.pathname || '/';
 const isBlog = pathname.startsWith('/blog');
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
+<header
+  class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm"
+>
   <div class="container mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
     <a href="/" class="flex items-center space-x-2">
-      <span class="font-display text-lg font-semibold tracking-[0.2em] text-foreground/90">REFIK CAN MALLI</span>
+      <span class="font-display text-lg font-semibold tracking-[0.2em] text-foreground/90"
+        >REFIK CAN MALLI</span
+      >
     </a>
 
     <!-- Desktop navigation -->
     <nav class="hidden md:flex items-center gap-6">
-      <ThemedLink href="/blog" variant="nav" active={isBlog}>
-        Blog
-      </ThemedLink>
+      <ThemedLink href="/blog" variant="nav" active={isBlog}> Blog </ThemedLink>
       <ThemedLink href="/assets/pdfs/refikcanmalli_cv_20251229.pdf" variant="nav" external>
         CV
       </ThemedLink>

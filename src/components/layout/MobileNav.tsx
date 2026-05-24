@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { themedIconButton } from '@/components/ui/themed-variants';
+import { cn } from '@/lib/utils';
 
 interface NavLink {
   href: string;
@@ -64,11 +66,13 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
 
         {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-sm text-foreground/60 hover:text-[color:var(--accent-blue)] hover:bg-foreground/10 transition-all duration-200"
+          className={cn(themedIconButton({ tone: 'nav', size: 'sm' }), 'absolute top-5 right-5')}
           aria-label="Close menu"
         >
           <svg
+            aria-hidden="true"
             width="20"
             height="20"
             viewBox="0 0 24 24"
@@ -84,7 +88,9 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
 
         {/* Header */}
         <div className="pt-20 px-8 pb-6 border-b border-border/50">
-          <span className="text-xs font-mono text-foreground/50 tracking-[0.3em] uppercase">Menu</span>
+          <span className="text-xs font-mono text-foreground/50 tracking-[0.3em] uppercase">
+            Menu
+          </span>
         </div>
 
         {/* Navigation links */}
@@ -109,6 +115,7 @@ function MobileNavOverlay({ open, onClose }: { open: boolean; onClose: () => voi
                   {link.label}
                   {link.external && (
                     <svg
+                      aria-hidden="true"
                       className="ml-2 w-4 h-4 opacity-50"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -148,12 +155,14 @@ export function MobileNav() {
     <>
       {/* Hamburger menu button */}
       <button
+        type="button"
         onClick={() => setOpen(true)}
         className="md:hidden p-2 rounded-sm text-foreground hover:bg-foreground/10 transition-colors"
         aria-label="Open navigation menu"
         aria-expanded={open}
       >
         <svg
+          aria-hidden="true"
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -170,10 +179,11 @@ export function MobileNav() {
       </button>
 
       {/* Portal the overlay to document body */}
-      {mounted && createPortal(
-        <MobileNavOverlay open={open} onClose={() => setOpen(false)} />,
-        document.body
-      )}
+      {mounted &&
+        createPortal(
+          <MobileNavOverlay open={open} onClose={() => setOpen(false)} />,
+          document.body
+        )}
     </>
   );
 }

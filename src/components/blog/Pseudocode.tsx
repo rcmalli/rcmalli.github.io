@@ -120,9 +120,7 @@ export function Pseudocode({ code, caption }: PseudocodeProps) {
 
   return (
     <div className="my-8">
-      {caption && (
-        <p className="text-sm text-muted-foreground mb-2 font-medium">{caption}</p>
-      )}
+      {caption && <p className="text-sm text-muted-foreground mb-2 font-medium">{caption}</p>}
       <div
         ref={containerRef}
         className="pseudocode-container overflow-x-auto bg-muted/30 rounded-sm p-4 border border-border/50"

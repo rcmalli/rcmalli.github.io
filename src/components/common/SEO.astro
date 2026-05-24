@@ -44,18 +44,18 @@ const twitterHandle = '@refikcanmalli';
 <meta property="og:image" content={new URL(image, Astro.site).href} />
 <meta property="og:site_name" content={siteName} />
 
-{type === 'article' && publishedTime && (
-  <meta property="article:published_time" content={publishedTime} />
-)}
-{type === 'article' && modifiedTime && (
-  <meta property="article:modified_time" content={modifiedTime} />
-)}
-{type === 'article' && author && (
-  <meta property="article:author" content={author} />
-)}
-{type === 'article' && tags.map((tag) => (
-  <meta property="article:tag" content={tag} />
-))}
+{
+  type === 'article' && publishedTime && (
+    <meta property="article:published_time" content={publishedTime} />
+  )
+}
+{
+  type === 'article' && modifiedTime && (
+    <meta property="article:modified_time" content={modifiedTime} />
+  )
+}
+{type === 'article' && author && <meta property="article:author" content={author} />}
+{type === 'article' && tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -67,34 +67,44 @@ const twitterHandle = '@refikcanmalli';
 <meta property="twitter:creator" content={twitterHandle} />
 
 <!-- JSON-LD Structured Data -->
-{type === 'website' && (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": author,
-    "url": Astro.site?.href,
-    "jobTitle": "Deep Learning Researcher",
-    "sameAs": [
-      "https://twitter.com/refikcanmalli",
-      "https://linkedin.com/in/refik-can-malli",
-      "https://github.com/rcmalli",
-      "https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en"
-    ]
-  })} />
-)}
+{
+  type === 'website' && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: author,
+        url: Astro.site?.href,
+        jobTitle: 'Deep Learning Researcher',
+        sameAs: [
+          'https://twitter.com/refikcanmalli',
+          'https://linkedin.com/in/refik-can-malli',
+          'https://github.com/rcmalli',
+          'https://scholar.google.com/citations?user=LCw9bdYAAAAJ&hl=en',
+        ],
+      })}
+    />
+  )
+}
 
-{type === 'article' && (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": title,
-    "description": description,
-    "image": new URL(image, Astro.site).href,
-    "author": {
-      "@type": "Person",
-      "name": author
-    },
-    "datePublished": publishedTime,
-    "dateModified": modifiedTime || publishedTime
-  })} />
-)}
+{
+  type === 'article' && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: description,
+        image: new URL(image, Astro.site).href,
+        author: {
+          '@type': 'Person',
+          name: author,
+        },
+        datePublished: publishedTime,
+        dateModified: modifiedTime || publishedTime,
+      })}
+    />
+  )
+}

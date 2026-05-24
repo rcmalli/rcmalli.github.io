@@ -9,10 +9,12 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Refik Can MALLI'),
     tags: z.array(z.string()).default([]),
-    image: z.object({
-      url: z.string(),
-      alt: z.string(),
-    }).optional(),
+    image: z
+      .object({
+        url: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });
