@@ -20,11 +20,13 @@ export function Pseudocode({ code, caption }: PseudocodeProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Load pseudocode.js CSS
+    // Load pseudocode.js CSS — integrity hash locks the file against CDN tampering
     if (!document.querySelector('link[href*="pseudocode"]')) {
       const cssLink = document.createElement('link');
       cssLink.rel = 'stylesheet';
       cssLink.href = 'https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css';
+      cssLink.integrity = 'sha384-ff9LEHNvuDqxJT/JRjAeQ1cWTWambRLe5j49SnOzhaotb23KEQkCanV+ooL+ch4k';
+      cssLink.crossOrigin = 'anonymous';
       document.head.appendChild(cssLink);
     }
 
@@ -38,6 +40,9 @@ export function Pseudocode({ code, caption }: PseudocodeProps) {
 
         const katexScript = document.createElement('script');
         katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+        katexScript.integrity =
+          'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+        katexScript.crossOrigin = 'anonymous';
         katexScript.onload = () => resolve();
         katexScript.onerror = () => reject(new Error('Failed to load KaTeX'));
         document.head.appendChild(katexScript);
@@ -54,6 +59,9 @@ export function Pseudocode({ code, caption }: PseudocodeProps) {
 
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js';
+        script.integrity =
+          'sha384-i3+YbLfC66kxqBVtgH6I+lEFAr+57mVZY/MSthCK/oTPo0rWCRzW/kSg2mJnTKLs';
+        script.crossOrigin = 'anonymous';
         script.onload = () => resolve();
         script.onerror = () => reject(new Error('Failed to load pseudocode.js'));
         document.head.appendChild(script);
